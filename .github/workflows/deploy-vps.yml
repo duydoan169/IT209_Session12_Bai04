@@ -30,7 +30,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/bangtu21/spring-deploy-demo:latest
+          tags: ghcr.io/duydoan169/spring-deploy-demo:latest
 
   deploy-vps:
     name: Deploy to VPS
@@ -53,7 +53,7 @@ jobs:
 
             echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
 
-            docker pull ghcr.io/bangtu21/spring-deploy-demo:latest
+            docker pull ghcr.io/duydoan169/spring-deploy-demo:latest
 
             docker stop spring-deploy-demo || true
             docker rm spring-deploy-demo || true
@@ -62,7 +62,7 @@ jobs:
               --name spring-deploy-demo \
               --restart unless-stopped \
               -p 8080:8080 \
-              ghcr.io/bangtu21/spring-deploy-demo:latest
+              ghcr.io/duydoan169/spring-deploy-demo:latest
 
             docker ps
             docker logs --tail 50 spring-deploy-demo
